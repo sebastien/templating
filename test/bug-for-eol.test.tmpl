@@ -1,0 +1,38 @@
+{"tags":["a","b","c"]}
+===
+<html
+	<body.use-base
+		<div#Application
+			<main.Content
+				<section
+					<div.body
+						${if:tags}
+						<ul.tags
+						${for:tags}
+							<li.tag
+								<span.T:${this}
+						${end}
+						${end}
+					<div.footer
+						<div.actions
+								<a.link.more
+									&larr; ${T:en=All articles,fr=Tous les articles}
+# EOF - vim: syn=pamela.clevercss.sugar
+===
+<html
+	<body.use-base
+		<div#Application
+			<main.Content
+				<section
+					<div.body
+						<ul.tags
+							<li.tag
+								<span.T:a
+							<li.tag
+								<span.T:b
+							<li.tag
+								<span.T:c
+					<div.footer
+						<div.actions
+								<a.link.more
+									&larr; All articles

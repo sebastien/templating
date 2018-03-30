@@ -1,0 +1,35 @@
+{"categories":[
+	{
+		"name": "artdeco",
+		"children":[{"name": "basics"}, {"name": "suggestions"}, {"name": "creations"}]
+	},{
+		"name": "broderie",
+		"children": [{"name": "basics"}, {"name": "suggestions"}, {"name": "creations"}]
+	}, {
+		"name": "pointe",
+		"children": [{"name": "basics"}, {"name": "suggestions"}, {"name": "creations"}]
+	}, {
+		"name": "evenements"
+	}
+]}
+===
+${for:categories}
+- Category: ${this.name}
+	${for:this.children}
+	- Subcategory: ${this.name}
+	${end}
+${end}
+===
+- Category: artdeco
+	- Subcategory: basics
+	- Subcategory: suggestions
+	- Subcategory: creations
+- Category: broderie
+	- Subcategory: basics
+	- Subcategory: suggestions
+	- Subcategory: creations
+- Category: pointe
+	- Subcategory: basics
+	- Subcategory: suggestions
+	- Subcategory: creations
+- Category: evenements
