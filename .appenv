@@ -1,0 +1,3 @@
+appenv_module  templating
+appenv_append  PYTHONPATH $APPENV_DIR/src
+appenv_append  PATH       $APPENV_DIR/bin

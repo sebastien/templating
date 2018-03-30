@@ -40,8 +40,10 @@ the value is not iterable, the block '...' won't be processed.
 Expands to the string bound to the 'LANG' key, where 'LANG' denotes
 a language (typically 'en', 'fr', 'es', etc.)."""
 
-import sys
-import re, sys, json, cgi, types
+import os, re, sys, json, cgi, types
+
+# TODO: Support chaining formats?
+# TODO: Explain attributes
 
 __version__       = "0.8.7"
 IS_PYTHON3        = (sys.version_info[0] > 2)
@@ -416,7 +418,10 @@ class Template(object):
 					return lvalue and True or False
 			if rvalue:
 				rvalue = json.loads(rvalue)
-			if (op == '=='):
+			if op[0] == "*":
+				lvalue = len(lvalue)
+				op = op[1:]
+			if (op == '==' or op == "="):
 				return (lvalue == rvalue)
 			elif (op == '!='):
 				return (lvalue != rvalue)
@@ -587,4 +592,17 @@ class Template(object):
 # 	return u"\n".join([(prefix + line) for line in value.split(u"\n")])
 # FORMATTERS["prefix"] = format_prefix
 
+def run( args=None ):
+	args = sys.argv[1:] if args is None else args
+	for path in args:
+		base, ext = path.rsplit(".", 1)
+		data_path = base + ".json"
+		if os.path.exists(data_path):
+			with open(data_path) as f:
+				data = json.load(f)
+		else:
+			data = None
+		with open(path) as f:
+			t = Template(f.read())
+			sys.stdout.write(t.apply(data))
 # EOF
