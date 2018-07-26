@@ -418,7 +418,7 @@ class Template(object):
 					return lvalue and True or False
 			if rvalue:
 				rvalue = json.loads(rvalue)
-			if op[0] == "*":
+			if op and op[0] == "*":
 				lvalue = len(lvalue)
 				op = op[1:]
 			if (op == '==' or op == "="):
@@ -605,4 +605,4 @@ def run( args=None ):
 		with open(path) as f:
 			t = Template(f.read())
 			sys.stdout.write(t.apply(data))
-# EOF
+# EOF - vim: ts=4 sw=4 noet
